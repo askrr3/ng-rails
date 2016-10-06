@@ -1,6 +1,6 @@
 var app = angular.module('nbaApp', ['ngRoute']);
 
-app.config(function($routeProvider){
+app.config(function($routeProvider, $httpProvider){
   $routeProvider
     .when('/partial1', {
       templateUrl: "/partials/partial1.html",
@@ -61,7 +61,7 @@ app.config(function($routeProvider){
 //     {name: "San Antonio Spurs"}
 //   ]
 // })
-////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////PLAYER
 
 app.factory('playerFactory', function($http){
   var factory = {}
@@ -71,7 +71,10 @@ app.factory('playerFactory', function($http){
     })
   }
   factory.create = function(playerInfo, callback){
+    console.log('inside factory create');
     $http.post('/players', playerInfo).success(function(output){
+      console.log('hello');
+
       callback(output)
     })
   }
@@ -83,13 +86,21 @@ app.controller('playersController', function($scope, playerFactory){
     $scope.players = json
   })
   $scope.createPlayer = function(){
+    console.log('inside createPlayer controller');
+
     playerFactory.create($scope.newPlayer, function(json){
+      // console.log('does anything come back from factory');
       $scope.players = json
       $scope.newPlayer = {}
     })
   }
 })
-////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////PLAYER
+
+
+
+
+////////////////////////////////////////////////////////////TEAM
 
 app.factory('teamFactory', function($http){
   var factory = {}

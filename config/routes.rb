@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   root 'static_pages#index'
-  # --------------- players routes --------------- #
 
+  # --------------- players routes --------------- #
+  
   get '/players' => 'players#index'
   post '/players' => 'players#create'
+
   # --------------- teams routes --------------- #
 
   get '/teams' => 'teams#index'
