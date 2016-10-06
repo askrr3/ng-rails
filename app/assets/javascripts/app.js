@@ -76,7 +76,7 @@ app.controller('playersController', function($scope, playerFactory){
   })
 })
 
-app.factory('teamsFactory', function($http){
+app.factory('teamFactory', function($http){
   var factory = {}
   factory.index = function(callback) {
     $http.get('/teams').success(function(output){
@@ -86,8 +86,8 @@ app.factory('teamsFactory', function($http){
   return factory
 })
 
-app.controller('teamsController', function($scope, teamsFactory){
-  teamsFactory.index(function(json){
+app.controller('teamsController', function($scope, teamFactory){
+  teamFactory.index(function(json){
     $scope.teams = json
   })
 })
