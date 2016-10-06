@@ -10,6 +10,8 @@ app.config(function($routeProvider){
       templateUrl: "/partials/partial2.html",
       controller:'teamsController'
     })
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+
 })
 //
 // app.controller("playersController", function($scope){
