@@ -62,8 +62,10 @@ app.config(function($routeProvider){
 
 app.factory('playerFactory', function($http){
   var factory = {}
+  console.log('=========');
   factory.index = function(callback) {
     $http.get('/players').success(function(output){
+      console.log(output);
       callback(output)
     })
   }
@@ -72,6 +74,7 @@ app.factory('playerFactory', function($http){
 
 app.controller('playersController', function($scope, playerFactory){
   playerFactory.index(function(json){
+    console.log(json);
     $scope.players = json
   })
 })
