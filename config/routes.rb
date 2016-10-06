@@ -2,14 +2,14 @@ Rails.application.routes.draw do
   root 'static_pages#index'
 
   # --------------- players routes --------------- #
-  
+
   get '/players' => 'players#index'
   post '/players' => 'players#create'
 
   # --------------- teams routes --------------- #
 
   get '/teams' => 'teams#index'
-
+  post '/teams' => 'teams#create'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

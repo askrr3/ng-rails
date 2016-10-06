@@ -86,8 +86,7 @@ app.controller('playersController', function($scope, playerFactory){
     $scope.players = json
   })
   $scope.createPlayer = function(){
-    console.log('inside createPlayer controller');
-
+    // console.log('inside createPlayer controller');
     playerFactory.create($scope.newPlayer, function(json){
       // console.log('does anything come back from factory');
       $scope.players = json
@@ -109,11 +108,22 @@ app.factory('teamFactory', function($http){
       callback(output)
     })
   }
+  factory.createTeam = function(newTeam, callback){
+    $http.post('/teams', newTeam).success(function(output){
+      callback(output)
+    })
+
+  }
   return factory
 })
 
 app.controller('teamsController', function($scope, teamFactory){
   teamFactory.index(function(json){
     $scope.teams = json
+  })
+  teamFactory.createTeam($scope.newTeam, function(json){
+    //if its $scope.team what happens
+    $scope.team = json
+    $scope.newTeam = {}
   })
 })

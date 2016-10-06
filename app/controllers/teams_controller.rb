@@ -1,6 +1,17 @@
 class TeamsController < ApplicationController
   def index
-    render :json => Team.all
+    render_teams
   end
 
+  def create
+    Team.create(team_params)
+    render_teams
+  end
+    private
+      def render_teams
+        render :json => Team.all
+      end
+      def team_params
+        params.require(:team).permit(:name)
+      end
 end
