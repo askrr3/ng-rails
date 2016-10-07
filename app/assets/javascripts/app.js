@@ -123,7 +123,7 @@ app.controller('teamsController', function($scope, teamFactory){
   })
   teamFactory.createTeam($scope.newTeam, function(json){
     //if its $scope.team what happens
-    $scope.team = json
+    $scope.teams = json
     $scope.newTeam = {}
   })
 })
