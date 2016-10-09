@@ -74,11 +74,9 @@ app.factory('playerFactory', function($http){
     console.log('inside factory create');
     $http.post('/players', playerInfo).success(function(output){
       console.log('hello');
-
       callback(output)
     })
   }
-
   factory.delete = function(playerId, callback){
     $http.delete('/players/' + playerId).success(function(output){
       callback(output)
@@ -101,7 +99,7 @@ app.controller('playersController', function($scope, playerFactory){
   }
   $scope.deletePlayer = function(playerId){
     playerFactory.delete(playerId, function(json){
-      $scope.player = json
+      $scope.players = json
     })
   }
 
