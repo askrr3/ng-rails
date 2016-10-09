@@ -78,6 +78,12 @@ app.factory('playerFactory', function($http){
       callback(output)
     })
   }
+
+  factory.delete = function(playerId, callback){
+    $http.delete('/players/' + playerId).success(function(output){
+      callback(output)
+    })
+  }
   return factory
 })
 
@@ -93,6 +99,12 @@ app.controller('playersController', function($scope, playerFactory){
       $scope.newPlayer = {}
     })
   }
+  $scope.deletePlayer = function(playerId){
+    playerFactory.delete(playerId, function(json){
+      $scope.player = json
+    })
+  }
+
 })
 ////////////////////////////////////////////////////////////PLAYER
 
@@ -112,7 +124,6 @@ app.factory('teamFactory', function($http){
     $http.post('/teams', newTeam).success(function(output){
       callback(output)
     })
-
   }
   return factory
 })
