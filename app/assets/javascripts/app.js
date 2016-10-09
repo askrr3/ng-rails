@@ -108,7 +108,7 @@ app.factory('teamFactory', function($http){
       callback(output)
     })
   }
-  factory.createTeam = function(newTeam, callback){
+  factory.create = function(newTeam, callback){
     $http.post('/teams', newTeam).success(function(output){
       callback(output)
     })
@@ -121,9 +121,11 @@ app.controller('teamsController', function($scope, teamFactory){
   teamFactory.index(function(json){
     $scope.teams = json
   })
-  teamFactory.createTeam($scope.newTeam, function(json){
-    //if its $scope.team what happens
-    $scope.teams = json
-    $scope.newTeam = {}
-  })
+  $scope.createTeam = function(){
+    teamFactory.create($scope.newTeam, function(json){
+      //if its $scope.team what happens
+      $scope.teams = json
+      $scope.newTeam = {}
+    })
+  }
 })
