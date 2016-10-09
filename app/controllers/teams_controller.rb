@@ -7,6 +7,11 @@ class TeamsController < ApplicationController
     Team.create(team_params)
     render_teams
   end
+
+  def delete
+    Team.find(params[:id]).destroy
+    render_teams
+  end
     private
       def render_teams
         render :json => Team.all

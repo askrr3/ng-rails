@@ -123,6 +123,11 @@ app.factory('teamFactory', function($http){
       callback(output)
     })
   }
+  factory.delete = function(teamId, callback){
+    $http.delete('/teams/' + teamId).success(function(output){
+      callback(output)
+    })
+  }
   return factory
 })
 
@@ -135,6 +140,11 @@ app.controller('teamsController', function($scope, teamFactory){
       //if its $scope.team what happens
       $scope.teams = json
       $scope.newTeam = {}
+    })
+  }
+  $scope.deleteTeam = function(teamId){
+    teamFactory.delete(teamId, function(json){
+      $scope.teams =  json
     })
   }
 })
