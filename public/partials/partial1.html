@@ -1,8 +1,30 @@
-<div>
+<!-- <div>
     <h2>NBA Players</h2>
     <ul>
         <li ng-repeat="player in players">{{ player.first_name }} {{ player.last_name }} | <button ng-click="deletePlayer(player.id)">Delete Player</button></li>
     </ul>
+</div> -->
+
+
+<div>
+  <h3>NBA Players</h3>
+
+  <label>Search Player: <input ng-model="searchText"></label>
+
+  <table>
+    <tr>
+      <th>First Name </th>
+      <th>Last Name </th>
+      <th>NBA Team </th>
+      <th>Delete </th>
+    </tr>
+    <tr ng-repeat="player in players  | filter:searchText">
+      <td>{{ player.first_name }} </td>
+      <td>{{ player.last_name }} </td>
+      <td> team name </td>
+      <td> <button ng-click="deletePlayer(player.id)">Delete Player</button> </td>
+    </tr>
+  </table>
 </div>
 
 <div>
@@ -10,10 +32,8 @@
     <p>
       <label> First Name</label>
       <input type="text" ng-model = 'newPlayer.player.first_name'>
-    </p>
-    <p>
       <label> Last Name</label>
       <input type="text" ng-model = 'newPlayer.player.last_name'>
+      <input type="submit" ng-click = 'createPlayer()' value="Create Player">
     </p>
-    <input type="submit" ng-click = 'createPlayer()' value="Create Player">
 </div>
