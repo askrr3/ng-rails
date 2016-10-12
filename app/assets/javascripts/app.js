@@ -89,6 +89,7 @@ app.controller('playersController', function($scope, playerFactory){
   playerFactory.index(function(json){
     $scope.players = json
   })
+
   $scope.createPlayer = function(){
     // console.log('inside createPlayer controller');
     playerFactory.create($scope.newPlayer, function(json){
